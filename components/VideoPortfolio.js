@@ -8,7 +8,7 @@ import VideoDetailsSection from "./VideoDetailsSection";
 import VideoControls from "./VideoControls";
 import moonlight from "../public/videos/Moonlight.mp4";
 import Group from "../public/image/Moonlight/group.jpg";
-import SduBusiness from "../public/videos/Businessday.mp4";
+import SduBusiness from "../public/videos/BusinessDay.mp4";
 import Sad from "../public/videos/Sad.mp4";
 import SadPic from "../public/image/Sad.png";
 import Prod from "../public/image/Prod.png";

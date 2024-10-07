@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock, X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -21,22 +24,26 @@ const PortfolioItem = ({ item, index, onClick }) => {
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
     >
-      <img
+      <Image
         src={item.thumbnail}
         alt={item.title}
-        className="w-full h-64 object-cover rounded-md"
+        width={400}
+        height={300}
+        layout="responsive"
+        objectFit="cover"
+        className="rounded-md"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 rounded-md"></div>
       <div className="absolute bottom-0 left-0 p-4 w-full">
         <div className="flex items-baseline mb-1">
-          <span className="text-xs font-semibold mr-2 ">
+          <span className="text-xs font-semibold mr-2 text-white">
             [{String(index + 1).padStart(2, "0")}]
           </span>
           <h3 className="text-lg font-bold truncate text-white">
             {item.title}
           </h3>
         </div>
-        <p className="text-sm  uppercase">{item.category}</p>
+        <p className="text-sm uppercase text-white">{item.category}</p>
         <div className="flex items-center text-xs text-gray-400 mt-2">
           <Clock size={12} className="mr-1" />
           <span>{item.date}</span>
@@ -70,13 +77,13 @@ const JournalView = ({ item, onClose, onPrev, onNext }) => {
     >
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
-          <button onClick={onPrev} className=" ">
+          <button onClick={onPrev} className="text-white">
             <ChevronLeft size={24} />
           </button>
           <h2 className="text-4xl font-bold text-center text-white">
             {item.title}
           </h2>
-          <button onClick={onNext} className=" ">
+          <button onClick={onNext} className="text-white">
             <ChevronRight size={24} />
           </button>
         </div>
@@ -88,46 +95,62 @@ const JournalView = ({ item, onClose, onPrev, onNext }) => {
         </button>
 
         <div className="max-w-4xl mx-auto">
-          <img
+          <Image
             src={item.image}
             alt={item.title}
-            className="w-full h-96 object-cover rounded-lg mb-8"
+            width={1200}
+            height={600}
+            layout="responsive"
+            objectFit="cover"
+            className="rounded-lg mb-8"
           />
 
           <div className="prose prose-lg prose-invert mx-auto">
             <p className="text-xl mb-6 text-gray-300">{item.description}</p>
 
-            <h3 className="text-2xl font-semibold mb-4 ">Project Details</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-white">
+              Project Details
+            </h3>
             <p className="text-gray-300">{item.details}</p>
 
             <div className="my-8 grid grid-cols-2 gap-4">
-              <img
+              <Image
                 src={item.image2}
                 alt="Detail 1"
-                className="w-full h-64 object-cover rounded-lg"
+                width={500}
+                height={300}
+                layout="responsive"
+                objectFit="cover"
+                className="rounded-lg"
               />
-              <img
+              <Image
                 src={item.image3}
                 alt="Detail 2"
-                className="w-full h-64 object-cover rounded-lg"
+                width={500}
+                height={300}
+                layout="responsive"
+                objectFit="cover"
+                className="rounded-lg"
               />
             </div>
 
-            <h3 className="text-2xl font-semibold mb-4 ">
+            <h3 className="text-2xl font-semibold mb-4 text-white">
               Challenges and Solutions
             </h3>
             <p className="text-gray-300">{item.challenges}</p>
 
-            <h3 className="text-2xl font-semibold mb-4 ">Outcomes</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-white">Outcomes</h3>
             <p className="text-gray-300">{item.outcomes}</p>
 
             <div className="mt-8">
-              <h4 className="text-xl font-semibold mb-2 ">Technologies Used</h4>
+              <h4 className="text-xl font-semibold mb-2 text-white">
+                Technologies Used
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {item.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-gray-800  px-3 py-1 rounded-full text-sm"
+                    className="bg-gray-800 text-white px-3 py-1 rounded-full text-sm"
                   >
                     {tag}
                   </span>
@@ -136,7 +159,7 @@ const JournalView = ({ item, onClose, onPrev, onNext }) => {
             </div>
 
             <div className="mt-8 flex justify-between items-center text-gray-400">
-              <span className="">{item.category}</span>
+              <span>{item.category}</span>
               <span>{item.date}</span>
             </div>
           </div>
@@ -170,45 +193,7 @@ const DynamicPortfolioPage = () => {
         "The final product exceeded client expectations, reducing data processing time by 40% and increasing user engagement by 25%. The intuitive interface received praise from both the client and end-users, setting a new standard for data visualization in their industry.",
       tags: ["React", "Node.js", "MongoDB", "Redux", "WebSockets", "D3.js"],
     },
-    {
-      id: 1,
-      title: "Project Alpha",
-      category: "Web Development",
-      date: "2023-05-15",
-      thumbnail: "/path/to/thumbnail1.jpg",
-      image: "/path/to/image1.jpg",
-      image2: "/path/to/detail1.jpg",
-      image3: "/path/to/detail2.jpg",
-      description:
-        "A responsive web application built with React and Node.js, featuring real-time data updates and a sleek user interface.",
-      details:
-        "Project Alpha was conceived as a solution to streamline data visualization for a major tech company. The goal was to create a dashboard that could handle large amounts of real-time data while maintaining a smooth and intuitive user experience.",
-      challenges:
-        "One of the main challenges we faced was optimizing the application to handle frequent updates without compromising performance. We implemented efficient state management using Redux and utilized WebSockets for real-time communication.",
-      outcomes:
-        "The final product exceeded client expectations, reducing data processing time by 40% and increasing user engagement by 25%. The intuitive interface received praise from both the client and end-users, setting a new standard for data visualization in their industry.",
-      tags: ["React", "Node.js", "MongoDB", "Redux", "WebSockets", "D3.js"],
-    },
-    {
-      id: 1,
-      title: "Project Alpha",
-      category: "Web Development",
-      date: "2023-05-15",
-      thumbnail: "/path/to/thumbnail1.jpg",
-      image: "/path/to/image1.jpg",
-      image2: "/path/to/detail1.jpg",
-      image3: "/path/to/detail2.jpg",
-      description:
-        "A responsive web application built with React and Node.js, featuring real-time data updates and a sleek user interface.",
-      details:
-        "Project Alpha was conceived as a solution to streamline data visualization for a major tech company. The goal was to create a dashboard that could handle large amounts of real-time data while maintaining a smooth and intuitive user experience.",
-      challenges:
-        "One of the main challenges we faced was optimizing the application to handle frequent updates without compromising performance. We implemented efficient state management using Redux and utilized WebSockets for real-time communication.",
-      outcomes:
-        "The final product exceeded client expectations, reducing data processing time by 40% and increasing user engagement by 25%. The intuitive interface received praise from both the client and end-users, setting a new standard for data visualization in their industry.",
-      tags: ["React", "Node.js", "MongoDB", "Redux", "WebSockets", "D3.js"],
-    },
-    // Add more portfolio items as needed
+    // Add more portfolio items here...
   ];
 
   const handlePrev = () => {

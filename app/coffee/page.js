@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import CinematicNavBar from "@/components/CinematicNavBar";
@@ -19,10 +19,10 @@ const ContactPage = () => {
   const contactInfoControls = useAnimation();
   const formControls = useAnimation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     contactInfoControls.start({ opacity: 1, x: 0 });
     formControls.start({ opacity: 1, x: 0 });
-  }, []);
+  }, [contactInfoControls, formControls]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

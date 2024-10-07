@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import {
@@ -9,6 +10,7 @@ import {
   useInView,
   AnimatePresence,
 } from "framer-motion";
+
 import ImgMoerk from "../public/image/moerk.jpg";
 import Chopper from "../public/videos/Chopper.mov";
 import EmilDark from "../public/image/emil-dark-portrait.jpg";
@@ -67,7 +69,6 @@ const images = [
     textColor: "white",
   },
 ];
-
 function useParallax(value, distance) {
   return useTransform(value, [0, 1], [-distance, distance]);
 }
@@ -261,23 +262,19 @@ const FullscreenImageSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.scrollSnapType = "y mandatory";
-      containerRef.current.style.scrollBehavior = "smooth";
-    }
+    const container = containerRef.current;
+    if (container) {
+      container.style.scrollSnapType = "y mandatory";
+      container.style.scrollBehavior = "smooth";
 
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const index = Math.round(
-          containerRef.current.scrollTop / window.innerHeight
-        );
+      const handleScroll = () => {
+        const index = Math.round(container.scrollTop / window.innerHeight);
         setActiveIndex(index);
-      }
-    };
+      };
 
-    containerRef.current?.addEventListener("scroll", handleScroll);
-    return () =>
-      containerRef.current?.removeEventListener("scroll", handleScroll);
+      container.addEventListener("scroll", handleScroll);
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   return (
