@@ -176,8 +176,8 @@ const DynamicPortfolioPage = () => {
   const portfolioItems = [
     {
       id: 1,
-      title: "Project Alpha",
-      category: "Web Development",
+      title: "Project Moonlight",
+      category: "Self branding",
       date: "2023-05-15",
       thumbnail: "/path/to/thumbnail1.jpg",
       image: "/path/to/image1.jpg",
