@@ -278,10 +278,7 @@ const FullscreenImageSlider = () => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="bg-black h-screen overflow-y-scroll scrollbar-hide"
-    >
+    <div ref={containerRef} className="bg-black h-screen overflow-y-scroll">
       {images.map((image, index) => (
         <ImageSection
           key={image.id}
